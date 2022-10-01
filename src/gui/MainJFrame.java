@@ -26,59 +26,88 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        ControlPanel = new javax.swing.JPanel();
+        CreateBtn = new javax.swing.JButton();
+        ViewBtn = new javax.swing.JButton();
+        UpdateBtn = new javax.swing.JButton();
+        SearchBtn = new javax.swing.JButton();
+        WorkPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Create");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        CreateBtn.setText("Create");
+
+        ViewBtn.setText("View");
+
+        UpdateBtn.setText("Update");
+        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                UpdateBtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("View");
+        SearchBtn.setText("Search");
 
-        jButton3.setText("Update");
+        javax.swing.GroupLayout ControlPanelLayout = new javax.swing.GroupLayout(ControlPanel);
+        ControlPanel.setLayout(ControlPanelLayout);
+        ControlPanelLayout.setHorizontalGroup(
+            ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ControlPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CreateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ViewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UpdateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                    .addComponent(SearchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        ControlPanelLayout.setVerticalGroup(
+            ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ControlPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(CreateBtn)
+                .addGap(50, 50, 50)
+                .addComponent(ViewBtn)
+                .addGap(54, 54, 54)
+                .addComponent(UpdateBtn)
+                .addGap(49, 49, 49)
+                .addComponent(SearchBtn)
+                .addContainerGap(100, Short.MAX_VALUE))
+        );
 
-        jButton4.setText("jButton4");
+        jSplitPane1.setLeftComponent(ControlPanel);
+
+        javax.swing.GroupLayout WorkPanelLayout = new javax.swing.GroupLayout(WorkPanel);
+        WorkPanel.setLayout(WorkPanelLayout);
+        WorkPanelLayout.setHorizontalGroup(
+            WorkPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 598, Short.MAX_VALUE)
+        );
+        WorkPanelLayout.setVerticalGroup(
+            WorkPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 366, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setRightComponent(WorkPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(310, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jButton1)
-                .addGap(34, 34, 34)
-                .addComponent(jButton2)
-                .addGap(34, 34, 34)
-                .addComponent(jButton3)
-                .addGap(34, 34, 34)
-                .addComponent(jButton4)
-                .addContainerGap(87, Short.MAX_VALUE))
+            .addComponent(jSplitPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_UpdateBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,9 +145,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JPanel ControlPanel;
+    private javax.swing.JButton CreateBtn;
+    private javax.swing.JButton SearchBtn;
+    private javax.swing.JButton UpdateBtn;
+    private javax.swing.JButton ViewBtn;
+    private javax.swing.JPanel WorkPanel;
+    private javax.swing.JSplitPane jSplitPane1;
     // End of variables declaration//GEN-END:variables
 }
