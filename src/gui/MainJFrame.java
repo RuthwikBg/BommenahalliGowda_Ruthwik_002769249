@@ -4,6 +4,9 @@
  */
 package gui;
 
+import model.EmpList;
+import model.Employee;
+
 /**
  *
  * @author Rutu
@@ -13,8 +16,14 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    EmpList empList;
+    Employee emp;
     public MainJFrame() {
         initComponents();
+        emp = new Employee();
+        empList = new EmpList();
+        
+        
     }
 
     /**
@@ -26,28 +35,27 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSplitPane1 = new javax.swing.JSplitPane();
+        splitPane = new javax.swing.JSplitPane();
         ControlPanel = new javax.swing.JPanel();
         CreateBtn = new javax.swing.JButton();
-        ViewBtn = new javax.swing.JButton();
-        UpdateBtn = new javax.swing.JButton();
-        SearchBtn = new javax.swing.JButton();
+        DisplayBtn = new javax.swing.JButton();
         WorkPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         CreateBtn.setText("Create");
-
-        ViewBtn.setText("View");
-
-        UpdateBtn.setText("Update");
-        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+        CreateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateBtnActionPerformed(evt);
+                CreateBtnActionPerformed(evt);
             }
         });
 
-        SearchBtn.setText("Search");
+        DisplayBtn.setText("Display");
+        DisplayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DisplayBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ControlPanelLayout = new javax.swing.GroupLayout(ControlPanel);
         ControlPanel.setLayout(ControlPanelLayout);
@@ -56,27 +64,21 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(ControlPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ViewBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(UpdateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
-                    .addComponent(SearchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DisplayBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CreateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                 .addContainerGap())
         );
         ControlPanelLayout.setVerticalGroup(
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ControlPanelLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(99, 99, 99)
                 .addComponent(CreateBtn)
-                .addGap(50, 50, 50)
-                .addComponent(ViewBtn)
-                .addGap(54, 54, 54)
-                .addComponent(UpdateBtn)
                 .addGap(49, 49, 49)
-                .addComponent(SearchBtn)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addComponent(DisplayBtn)
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setLeftComponent(ControlPanel);
+        splitPane.setLeftComponent(ControlPanel);
 
         javax.swing.GroupLayout WorkPanelLayout = new javax.swing.GroupLayout(WorkPanel);
         WorkPanel.setLayout(WorkPanelLayout);
@@ -89,25 +91,31 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGap(0, 366, Short.MAX_VALUE)
         );
 
-        jSplitPane1.setRightComponent(WorkPanel);
+        splitPane.setRightComponent(WorkPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(splitPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(splitPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_UpdateBtnActionPerformed
+    private void CreateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBtnActionPerformed
+        CreateJPanel createpanel = new CreateJPanel(empList);
+        splitPane.setRightComponent(createpanel);
+    }//GEN-LAST:event_CreateBtnActionPerformed
+
+    private void DisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisplayBtnActionPerformed
+        DisplayJPanel displaypanel = new DisplayJPanel(empList);
+        splitPane.setRightComponent(displaypanel);
+    }//GEN-LAST:event_DisplayBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,10 +155,8 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControlPanel;
     private javax.swing.JButton CreateBtn;
-    private javax.swing.JButton SearchBtn;
-    private javax.swing.JButton UpdateBtn;
-    private javax.swing.JButton ViewBtn;
+    private javax.swing.JButton DisplayBtn;
     private javax.swing.JPanel WorkPanel;
-    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane splitPane;
     // End of variables declaration//GEN-END:variables
 }

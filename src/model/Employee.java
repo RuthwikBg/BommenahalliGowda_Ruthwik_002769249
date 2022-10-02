@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author Rutu
+ * @author Ruthwik
  */
 public class Employee {
     
@@ -19,6 +19,25 @@ public class Employee {
     private String empTeamInfo;
     private String emailAddress;
     private String cellPhoneNo;
+    private String positionTitle;
+    private String imgFilePath;
+
+    public String getImgFilePath() {
+        return imgFilePath;
+    }
+
+    public void setImgFilePath(String imgFilePath) {
+        this.imgFilePath = imgFilePath;
+    }
+    
+       
+    public String getPositionTitle() {
+        return positionTitle;
+    }
+
+    public void setPositionTitle(String positionTitle) {
+        this.positionTitle = positionTitle;
+    }     
 
     public String getName() {
         return name;
@@ -90,6 +109,12 @@ public class Employee {
 
     public void setCellPhoneNo(String cellPhoneNo) {
         this.cellPhoneNo = cellPhoneNo;
+    }
+    
+    @Override
+    public String toString(){
+        return this.empID;
+        
     }
     
     
