@@ -18,9 +18,14 @@ public class DisplayJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form DisplayJPanel
+     * 
+     * 
      */
     
+    
+    
     EmpList empList;
+    int rowNum;
     
     public DisplayJPanel(EmpList empList) {
         initComponents();
@@ -63,7 +68,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
         cellPh = new javax.swing.JLabel();
         email = new javax.swing.JLabel();
         imgDisplay = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel12.setText("Employee Details");
@@ -173,11 +178,11 @@ public class DisplayJPanel extends javax.swing.JPanel {
 
         imgDisplay.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Update");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        updateBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateBtnActionPerformed(evt);
             }
         });
 
@@ -211,7 +216,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(startdateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(startDate_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -304,7 +309,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imgDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(46, 46, 46)
-                .addComponent(jButton1)
+                .addComponent(updateBtn)
                 .addContainerGap(130, Short.MAX_VALUE))
         );
 
@@ -351,6 +356,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         int selectRowIndex = empTable.getSelectedRow();
+        rowNum = selectRowIndex;
         
         if (selectRowIndex < 0){
             JOptionPane.showMessageDialog(this,"Select a row to delete");
@@ -377,38 +383,51 @@ public class DisplayJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_viewBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         //DefaultTableModel model = (DefaultTableModel) empTable.getModel();
         if(empTable.getSelectedRowCount() == 1){
-        String name = name_txt1.getText();
-        String ID = empId_txt.getText();
-        String Age = age_txt.getText();
-        String Gender = gender_txt.getText();
-        String StDate = startDate_txt.getText();
-        String Level = level_txt.getText();
-        String Infos = teamInfo_txt.getText();
-        String PosTitle = pos_txt.getText();
-        String PhNo = phNo_txt.getText();
-        String mail = mailId_txt.getText();
+                
+        Employee emp1 = new Employee() ;
         
+        emp1.setName(name_txt1.getText());
+        emp1.setGender(gender_txt.getText());
+        emp1.setEmpTeamInfo(teamInfo_txt.getText());
+        emp1.setEmpStartDate(startDate_txt.getText());
+        emp1.setEmpLevel(level_txt.getText());
+        emp1.setEmpID(empId_txt.getText());
+        emp1.setEmpAge(age_txt.getText());
+        emp1.setEmailAddress(mailId_txt.getText());
+        emp1.setCellPhoneNo(phNo_txt.getText());
+        emp1.setPositionTitle(pos_txt.getText());
+        //emp1.setImgFilePath(filePath_txt.getText());
         
+        empList.addNewEmployee(emp1);
         
-        /*empTable.setValueAt(names, empTable.getSelectedRow(), 0);
-        empTable.setValueAt(IDs,empTable.getSelectedRow(),1);
-        empTable.setValueAt(Ages,empTable.getSelectedRow(),2);
-        empTable.setValueAt(Genders,empTable.getSelectedRow(),3);
-        empTable.setValueAt(StDates,empTable.getSelectedRow(),4);
-        empTable.setValueAt(Levels,empTable.getSelectedRow(),5);
-        empTable.setValueAt(Infos,empTable.getSelectedRow(),6);
-        empTable.setValueAt(PosTitle,empTable.getSelectedRow(),7);
-        empTable.setValueAt(PhNo,empTable.getSelectedRow(),8);
-        empTable.setValueAt(mail,empTable.getSelectedRow(),9);*/
+        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        Employee selectEmp = (Employee)model.getValueAt(rowNum, 0);
+        
+        empList.deleteEmployee(selectEmp);
+        
+                
+        name_txt1.setText("");
+        gender_txt.setText("");
+        teamInfo_txt.setText("");
+        startDate_txt.setText("");
+        level_txt.setText("");
+        empId_txt.setText("");
+        age_txt.setText("");
+        mailId_txt.setText("");
+        phNo_txt.setText("");
+        pos_txt.setText("");
+        
+        populateTable();      
+                
         }
         
         
         
         JOptionPane.showMessageDialog(this, "Updated Successfully");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_updateBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -424,7 +443,6 @@ public class DisplayJPanel extends javax.swing.JPanel {
     private javax.swing.JTable empTable;
     private javax.swing.JTextField gender_txt;
     private javax.swing.JLabel imgDisplay;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel levelLabel;
@@ -438,6 +456,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel startdateLabel;
     private javax.swing.JLabel teamInfo;
     private javax.swing.JTextField teamInfo_txt;
+    private javax.swing.JButton updateBtn;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 
