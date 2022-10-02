@@ -57,18 +57,22 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="teamInfo_txt" min="-2" pref="174" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="pos_txt" max="32767" attributes="0"/>
-                              <Component id="phNo_txt" max="32767" attributes="0"/>
-                              <Component id="level_txt" max="32767" attributes="0"/>
-                              <Component id="mailId_txt" alignment="0" max="32767" attributes="0"/>
-                              <Component id="filePath_txt" alignment="0" max="32767" attributes="0"/>
-                              <Component id="empId_txt" alignment="0" max="32767" attributes="0"/>
-                              <Component id="age_txt" alignment="0" max="32767" attributes="0"/>
-                              <Component id="gender_txt" alignment="0" max="32767" attributes="0"/>
-                              <Component id="name_txt1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="startDate_txt" max="32767" attributes="0"/>
-                              <Component id="saveBtn" pref="174" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="pos_txt" max="32767" attributes="0"/>
+                                  <Component id="phNo_txt" max="32767" attributes="0"/>
+                                  <Component id="level_txt" max="32767" attributes="0"/>
+                                  <Component id="mailId_txt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="filePath_txt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="empId_txt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="age_txt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="gender_txt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="name_txt1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="startDate_txt" max="32767" attributes="0"/>
+                                  <Component id="saveBtn" pref="174" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="dateFormat" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -106,6 +110,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="startdateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="startDate_txt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="dateFormat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -316,6 +321,11 @@
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Upload"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ImgUploadActionPerformed"/>
@@ -362,6 +372,16 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="dateFormat">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="MM/DD/YYY"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -4,6 +4,8 @@
  */
 package gui;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -83,9 +85,18 @@ public class DisplayJPanel extends javax.swing.JPanel {
             new String [] {
                 "Employee ID", "Name", "Postion Title", "Level"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(empTable);
 
+        viewBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +104,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
             }
         });
 
+        deleteBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,14 +205,6 @@ public class DisplayJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(viewBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteBtn))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addComponent(imgDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
@@ -218,52 +222,59 @@ public class DisplayJPanel extends javax.swing.JPanel {
                                     .addComponent(startdateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(viewBtn)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(startDate_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(gender_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(empId_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(age_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(name_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(startDate_txt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gender_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(empId_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(age_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(name_txt1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(107, 107, 107)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cellPh)
+                                    .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(teamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(teamInfo_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                                    .addComponent(phNo_txt)
+                                    .addComponent(level_txt)
+                                    .addComponent(pos_txt)
+                                    .addComponent(mailId_txt))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(deleteBtn)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cellPh)
-                            .addComponent(position, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(teamInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(levelLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(teamInfo_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addComponent(phNo_txt)
-                            .addComponent(level_txt)
-                            .addComponent(pos_txt)
-                            .addComponent(mailId_txt))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))))
                 .addGap(35, 35, 35))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBtn, viewBtn});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBtn, updateBtn, viewBtn});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {age_txt, empId_txt, gender_txt, level_txt, mailId_txt, name_txt1, phNo_txt, pos_txt, startDate_txt, teamInfo_txt});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(29, 29, 29)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(viewBtn)
-                            .addComponent(deleteBtn))
-                        .addGap(112, 112, 112)
+                        .addGap(160, 160, 160)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -305,15 +316,18 @@ public class DisplayJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(levelLabel)
                                 .addComponent(level_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(imgDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(46, 46, 46)
-                .addComponent(updateBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateBtn)
+                    .addComponent(viewBtn)
+                    .addComponent(deleteBtn))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, viewBtn});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, updateBtn, viewBtn});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -348,9 +362,9 @@ public class DisplayJPanel extends javax.swing.JPanel {
         Employee selectEmp = (Employee)model.getValueAt(selectRowIndex, 0);
         
         empList.deleteEmployee(selectEmp);
-        
-        JOptionPane.showMessageDialog(this,"Employee details deleted");
         populateTable();
+        JOptionPane.showMessageDialog(this,"Employee details deleted");
+        
         
     }//GEN-LAST:event_deleteBtnActionPerformed
 
@@ -385,9 +399,12 @@ public class DisplayJPanel extends javax.swing.JPanel {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         //DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
+        Employee emp1 = (Employee)model.getValueAt(rowNum, 0);
+        
         if(empTable.getSelectedRowCount() == 1){
                 
-        Employee emp1 = new Employee() ;
+        //Employee emp1 = new Employee() ;
         
         emp1.setName(name_txt1.getText());
         emp1.setGender(gender_txt.getText());
@@ -396,19 +413,31 @@ public class DisplayJPanel extends javax.swing.JPanel {
         emp1.setEmpLevel(level_txt.getText());
         emp1.setEmpID(empId_txt.getText());
         emp1.setEmpAge(age_txt.getText());
-        emp1.setEmailAddress(mailId_txt.getText());
-        emp1.setCellPhoneNo(phNo_txt.getText());
+        //emp1.setEmailAddress(mailId_txt.getText());
+        //emp1.setCellPhoneNo(phNo_txt.getText());
         emp1.setPositionTitle(pos_txt.getText());
         //emp1.setImgFilePath(filePath_txt.getText());
         
-        empList.addNewEmployee(emp1);
+        String validtel = "\\d{10}";
+        Pattern pattern = Pattern.compile(validtel);
+        Matcher matcher = pattern.matcher(phNo_txt.getText());
+        if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Enter correct Cellphone Number");
+            return;
+        }
+        emp1.setCellPhoneNo(phNo_txt.getText());
         
-        DefaultTableModel model = (DefaultTableModel) empTable.getModel();
-        Employee selectEmp = (Employee)model.getValueAt(rowNum, 0);
         
-        empList.deleteEmployee(selectEmp);
+       String validemail = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+       Pattern pattern2 = Pattern.compile(validemail);
+       Matcher matcher2 = pattern2.matcher(mailId_txt.getText());
+       if (!matcher2.matches()){
+           JOptionPane.showMessageDialog(this,"Enter corect Email ID");
+           return;
+       }
+       emp1.setEmailAddress(mailId_txt.getText());
         
-                
+                        
         name_txt1.setText("");
         gender_txt.setText("");
         teamInfo_txt.setText("");
@@ -419,13 +448,13 @@ public class DisplayJPanel extends javax.swing.JPanel {
         mailId_txt.setText("");
         phNo_txt.setText("");
         pos_txt.setText("");
+        imgDisplay.setIcon(null);
         
         populateTable();      
                 
         }
-        
-        
-        
+            
+               
         JOptionPane.showMessageDialog(this, "Updated Successfully");
     }//GEN-LAST:event_updateBtnActionPerformed
 

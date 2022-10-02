@@ -6,7 +6,7 @@ package model;
 
 /**
  *
- * @author Ruthwik
+ * @author Rutu
  */
 public class Employee {
     

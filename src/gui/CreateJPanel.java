@@ -6,6 +6,8 @@ package gui;
 
 import java.awt.Image;
 import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -73,6 +75,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         filePath_txt = new javax.swing.JTextField();
         name_txt1 = new javax.swing.JTextField();
         saveBtn = new javax.swing.JButton();
+        dateFormat = new javax.swing.JLabel();
 
         NameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         NameLabel.setText("Name");
@@ -144,6 +147,7 @@ public class CreateJPanel extends javax.swing.JPanel {
 
         ImgUpload.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ImgUpload.setText("Upload");
+        ImgUpload.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         ImgUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImgUploadActionPerformed(evt);
@@ -179,6 +183,9 @@ public class CreateJPanel extends javax.swing.JPanel {
                 saveBtnActionPerformed(evt);
             }
         });
+
+        dateFormat.setText("MM/DD/YYY");
+        dateFormat.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -216,18 +223,21 @@ public class CreateJPanel extends javax.swing.JPanel {
                                 .addGap(87, 87, 87)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(teamInfo_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(pos_txt)
-                                .addComponent(phNo_txt)
-                                .addComponent(level_txt)
-                                .addComponent(mailId_txt)
-                                .addComponent(filePath_txt)
-                                .addComponent(empId_txt)
-                                .addComponent(age_txt)
-                                .addComponent(gender_txt)
-                                .addComponent(name_txt1)
-                                .addComponent(startDate_txt)
-                                .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pos_txt)
+                                    .addComponent(phNo_txt)
+                                    .addComponent(level_txt)
+                                    .addComponent(mailId_txt)
+                                    .addComponent(filePath_txt)
+                                    .addComponent(empId_txt)
+                                    .addComponent(age_txt)
+                                    .addComponent(gender_txt)
+                                    .addComponent(name_txt1)
+                                    .addComponent(startDate_txt)
+                                    .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
+                                .addGap(33, 33, 33)
+                                .addComponent(dateFormat)))))
                 .addContainerGap(301, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -254,7 +264,8 @@ public class CreateJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startdateLabel)
-                    .addComponent(startDate_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startDate_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateFormat))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(levelLabel)
@@ -332,11 +343,32 @@ public class CreateJPanel extends javax.swing.JPanel {
         emp1.setEmpLevel(level_txt.getText());
         emp1.setEmpID(empId_txt.getText());
         emp1.setEmpAge(age_txt.getText());
-        emp1.setEmailAddress(mailId_txt.getText());
-        emp1.setCellPhoneNo(phNo_txt.getText());
+        //emp1.setEmailAddress(mailId_txt.getText());
+        //emp1.setCellPhoneNo(phNo_txt.getText());
         emp1.setPositionTitle(pos_txt.getText());
         emp1.setImgFilePath(filePath_txt.getText());
         
+        String validtel = "\\d{10}";
+        Pattern pattern = Pattern.compile(validtel);
+        Matcher matcher = pattern.matcher(phNo_txt.getText());
+        if (!matcher.matches()){
+            JOptionPane.showMessageDialog(this,"Enter correct Cellphone Number");
+            return;
+        }
+        emp1.setCellPhoneNo(phNo_txt.getText());
+        
+        
+       String validemail = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+       Pattern pattern2 = Pattern.compile(validemail);
+       Matcher matcher2 = pattern2.matcher(mailId_txt.getText());
+       if (!matcher2.matches()){
+           JOptionPane.showMessageDialog(this,"Enter corect Email ID");
+           return;
+       }
+       emp1.setEmailAddress(mailId_txt.getText());
+       
+       
+       
         empList.addNewEmployee(emp1);
         
         JOptionPane.showMessageDialog(this,"Details Saved");
@@ -363,6 +395,7 @@ public class CreateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel ageLabel;
     private javax.swing.JTextField age_txt;
     private javax.swing.JLabel cellPh;
+    private javax.swing.JLabel dateFormat;
     private javax.swing.JLabel email;
     private javax.swing.JLabel empID;
     private javax.swing.JTextField empId_txt;
