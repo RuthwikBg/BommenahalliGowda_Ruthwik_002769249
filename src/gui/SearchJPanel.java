@@ -4,6 +4,7 @@
  */
 package gui;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -388,7 +389,7 @@ public class SearchJPanel extends javax.swing.JPanel {
 
         String filename1 = selectEmp.getImgFilePath();
         //imgDisplay.setText(filename1);
-        ImageIcon icon1 = new ImageIcon(filename1);
+        ImageIcon icon1 = new ImageIcon(new ImageIcon(filename1).getImage().getScaledInstance(imgDisplay.getWidth(), imgDisplay.getHeight(), Image.SCALE_DEFAULT));
         imgDisplay.setIcon(icon1);
 
     }//GEN-LAST:event_viewBtnActionPerformed

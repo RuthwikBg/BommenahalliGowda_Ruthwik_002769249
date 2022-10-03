@@ -4,6 +4,7 @@
  */
 package gui;
 
+import java.awt.Image;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -392,7 +393,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
         
         String filename1 = selectEmp.getImgFilePath();
         //imgDisplay.setText(filename1);
-        ImageIcon icon1 = new ImageIcon(filename1);
+        ImageIcon icon1 = new ImageIcon(new ImageIcon(filename1).getImage().getScaledInstance(imgDisplay.getWidth(), imgDisplay.getHeight(), Image.SCALE_DEFAULT));
         imgDisplay.setIcon(icon1);
         
     }//GEN-LAST:event_viewBtnActionPerformed
@@ -437,6 +438,14 @@ public class DisplayJPanel extends javax.swing.JPanel {
        }
        emp1.setEmailAddress(mailId_txt.getText());
         
+       String validDate = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
+        Pattern pattern3 = Pattern.compile(validDate);
+        Matcher matcher3 = pattern3.matcher(phNo_txt.getText());
+        if (!matcher3.matches()){
+            JOptionPane.showMessageDialog(this,"Enter correct Date");
+            return;
+        }
+        emp1.setEmpStartDate(startDate_txt.getText());
                         
         name_txt1.setText("");
         gender_txt.setText("");
