@@ -382,7 +382,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
         
         name_txt1.setText(selectEmp.getName());
         empId_txt.setText(selectEmp.getEmpID());
-        age_txt.setText(selectEmp.getEmpStartDate());
+        age_txt.setText(selectEmp.getEmpAge());
         gender_txt.setText(selectEmp.getGender());
         startDate_txt.setText(selectEmp.getEmpStartDate());
         teamInfo_txt.setText(selectEmp.getEmpTeamInfo());
@@ -440,7 +440,7 @@ public class DisplayJPanel extends javax.swing.JPanel {
         
        String validDate = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
         Pattern pattern3 = Pattern.compile(validDate);
-        Matcher matcher3 = pattern3.matcher(phNo_txt.getText());
+        Matcher matcher3 = pattern3.matcher(startDate_txt.getText());
         if (!matcher3.matches()){
             JOptionPane.showMessageDialog(this,"Enter correct Date");
             return;

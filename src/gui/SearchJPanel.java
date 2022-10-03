@@ -195,7 +195,7 @@ public class SearchJPanel extends javax.swing.JPanel {
             }
         });
 
-        searchDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee Id", "Name", "Position Title" }));
+        searchDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employee Id", "Name", "Position Title", "Level" }));
         searchDropDown.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchDropDownActionPerformed(evt);
@@ -419,6 +419,14 @@ public class SearchJPanel extends javax.swing.JPanel {
         if(value.equals("Position Title")){
             for(Employee e : empList.getList()){
                 if (e.getPositionTitle().equalsIgnoreCase(searchTxt)){
+                    tempList.add(e);
+                }            
+            }
+        }
+        
+        if(value.equals("Level")){
+            for(Employee e : empList.getList()){
+                if (e.getEmpLevel().equalsIgnoreCase(searchTxt)){
                     tempList.add(e);
                 }            
             }
