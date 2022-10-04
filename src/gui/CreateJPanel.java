@@ -367,14 +367,6 @@ public class CreateJPanel extends javax.swing.JPanel {
        }
        emp1.setEmailAddress(mailId_txt.getText());
        
-       String validDate = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
-        Pattern pattern3 = Pattern.compile(validDate);
-        Matcher matcher3 = pattern3.matcher(startDate_txt.getText());
-        if (!matcher3.matches()){
-            JOptionPane.showMessageDialog(this,"Enter correct Date");
-            return;
-        }
-        emp1.setEmpStartDate(startDate_txt.getText());
        
         /*String validDate = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
         Pattern pattern3 = Pattern.compile(validDate);

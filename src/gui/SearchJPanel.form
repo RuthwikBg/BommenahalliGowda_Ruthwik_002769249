@@ -418,11 +418,10 @@
     <Component class="javax.swing.JComboBox" name="searchDropDown">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="Employee Id"/>
             <StringItem index="1" value="Name"/>
             <StringItem index="2" value="Position Title"/>
-            <StringItem index="3" value="Level"/>
           </StringArray>
         </Property>
       </Properties>
